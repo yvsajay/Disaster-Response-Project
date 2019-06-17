@@ -54,7 +54,7 @@ def build_model():
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(RandomForestClassifier(random_state=42, verbose=2), n_jobs= -1))
+        ('clf', MultiOutputClassifier(RandomForestClassifier(random_state=42, verbose=1), n_jobs= -1))
     ])
     parameters = {
         'tfidf__use_idf': (True, False),
