@@ -7,6 +7,9 @@ Classify Responses during disasters into 36 different Categories. THe web app al
 - [How to run the scripts](#how-to-run-the-scripts)
 - [Libraries used:](#libraries-used-)
 - [Files in the Repository](#files-in-the-repository)
+- [The ETL Process](#the-etl-process)
+- [The Model](#the-model)
+- [The Web app](#the-web-app)
 - [Acknowledgements](#acknowledgements)
 
 
@@ -36,9 +39,28 @@ Classify Responses during disasters into 36 different Categories. THe web app al
 6. [MultiOutputClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.multioutput.MultiOutputClassifier.html)
 
 ## Files in the Repository
-1. Messages.csv - Raw Seattle listings data as of February 09, 2019 provided by Inside Airbnb team. Data can be found [here](http://insideairbnb.com/get-the-data.html)
-2. Categories.csv - Raw Boston listings data as of February 09, 2019 provided by Inside Airbnb team. Data can be found [here](http://insideairbnb.com/get-the-data.html)
+1. Messages.csv - Raw messages data
+2. Categories.csv - Categories for the messages. 
 3. Classifier.pkl - Trained Model that can be used to classify any given message amongst the 36 categories.
+
+## The ETL Process
+In a Python script, process_data.py will do the below steps
+    - Loads the messages and categories datasets
+    - Merges the two datasets
+    - Cleans the data
+    - Stores it in a SQLite database
+
+## The Model
+In a Python script, train_classifier.py, write a machine learning pipeline that:
+    - Loads data from the SQLite database
+    - Splits the dataset into training and test sets
+    - Builds a text processing and machine learning pipeline
+    - Trains and tunes a model using GridSearchCV
+    - Outputs results on the test set
+    - Exports the final model as a pickle file 
+
+## The Web App
+The app will help to determine any input message into either of the 36 categories. It also has a couple of visualizations on the training data. One, is the count of messages by their "Genre", and the other, the count of messages by their "Category" identified.
 
 ## Acknowledgements 
 1. [Figure Eight](https://www.figure-eight.com/) for providing us the data.
